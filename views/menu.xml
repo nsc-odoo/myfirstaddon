@@ -1,0 +1,68 @@
+<odoo>
+    <!-- window action -->
+    <!--
+        The following tag is an action definition for a "window action",
+        that is an action opening a view or a set of views
+    -->
+    <record model="ir.actions.act_window" id="course_list_action">
+        <field name="name">Courses</field>
+        <field name="res_model">test.course</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context" eval="{'search_default_my_courses': 1}"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first course
+            </p>
+        </field>
+    </record>
+
+    <!-- top level menu: no parent -->
+    <menuitem id="main_openacademy_menu" name="Citadel"/>
+    <!-- A first level in the left side menu is needed
+            before using action= attribute -->
+
+    <menuitem id="openacademy_menu" name="Cours et sessions"
+                parent="main_openacademy_menu"/>
+    <!-- the following menuitem should appear *after*
+            its parent openacademy_menu and *after* its
+            action course_list_action -->
+    <menuitem id="courses_menu" name="Liste des cours" parent="openacademy_menu"
+                action="course_list_action"/>
+    <!-- Full id location:
+            action="openacademy.course_list_action"
+            It is not required when it is the same module -->
+
+    <menuitem 
+            id="configuration_menu" 
+            name="Configuration" 
+            parent="main_openacademy_menu"
+        />
+    <menuitem 
+        id="contact_menu"       
+        name="Contacts"      
+        parent="configuration_menu"        
+        action="contact_list_action"
+    />
+
+    <record model="ir.actions.act_window" id="contact_cat_list_action">
+        <field name="name">Contact Tags</field>
+        <field name="res_model">res.partner.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem   id="contact_cat_menu" 
+                name="Catégories de contacts"
+                parent="configuration_menu"
+                action="contact_cat_list_action"/>
+
+    <!--List of views for the sessions -->
+    <record model="ir.actions.act_window" id="session_list_action">
+        <field name="name">Sessions</field>
+        <field name="res_model">test.session</field>
+        <field name="view_mode">tree,form,calendar,gantt,graph,kanban</field>
+    </record>
+
+    <menuitem   id="session_menu" name="Sessions"
+                parent="openacademy_menu"
+                action="session_list_action"/>
+        
+</odoo>

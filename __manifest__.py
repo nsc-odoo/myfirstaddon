@@ -23,7 +23,7 @@ Accounting reports for Austria.
 
     """,
     "depends": [],
-    "data": ["views/myviews.xml", "views/partner.xml"
+    "data": ["views/menu.xml","views/views_course.xml","views/views_session.xml", "views/views_partner.xml"
     ],
     'installable': True,
     'auto_install': True,
